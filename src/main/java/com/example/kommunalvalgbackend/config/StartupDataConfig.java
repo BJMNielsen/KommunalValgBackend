@@ -1,10 +1,10 @@
-package com.example.kommunalvalg.config;
+package com.example.kommunalvalgbackend.config;
 
 
-import com.example.kommunalvalg.model.Kandidat;
-import com.example.kommunalvalg.model.Parti;
-import com.example.kommunalvalg.repository.KandidatRepository;
-import com.example.kommunalvalg.repository.PartiRepository;
+import com.example.kommunalvalgbackend.model.Kandidat;
+import com.example.kommunalvalgbackend.model.Parti;
+import com.example.kommunalvalgbackend.repository.KandidatRepository;
+import com.example.kommunalvalgbackend.repository.PartiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -25,58 +25,68 @@ public class StartupDataConfig implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
+        System.out.println("SYSTEMET STARTER");
+
+
         // PARTI SOCIALDEMOKRATERNE //
-        Parti socialdemokratiet = new Parti();
-
-        socialdemokratiet.setPartiNavn("socialdemokratiet");
-        socialdemokratiet.setPartiSymbol('A');
+        Parti Socialdemokratiet = new Parti();
+        Socialdemokratiet.setPartiNavn("Socialdemokratiet");
+        Socialdemokratiet.setPartiSymbol('A');
         // Nu saver vi partiet, som får et id autogenereret i databasen. Når vi .save noget, så returner den objektet du saver.
-        // Vi gemmer så vores socialdemokrati vi får returnet fra .save metoden nedenunder, nu med en auto generated id, i vores gamle socialdemokratiet variabel, som ikke indeholder et id.
-        System.out.println(socialdemokratiet.getId());
-        socialdemokratiet = partiRepository.save(socialdemokratiet);
-        System.out.println(socialdemokratiet.getId());
+        // Vi gemmer så vores socialdemokrati vi får returnet fra .save metoden nedenunder, nu med en auto generated id, i vores gamle Socialdemokratiet variabel, som ikke indeholder et id.
+        System.out.println(Socialdemokratiet.getId()); // Socialdemokratiet's id i java er nul
+        Socialdemokratiet = partiRepository.save(Socialdemokratiet); // For at få et id til vores Socialdemokratiet variabel i java, så saver vi objektet så der kommer et autoincrementet id, og save metoden returner det objekt du saver, nu med et id også, og den overwriter vi så vores gamle java variabel der endnu ikke har et id, men det returnet Socialdemokratiet vi har savet, der nu indeholder et ID efter saven.
+        System.out.println(Socialdemokratiet.getId()); // Socialdemokratiet's id i java er nu 1
 
+        // Her er den anden måde hvor man manuelt gemmer id'et og sætter.
+        // int socialdemokratietID = partiRepository.save(Socialdemokratiet).getId(); Både saver og laver .getID på den savede ting.
+        // Socialdemokratiet.setId(socialdemokratietID);
 
         // KANDIDATER SOCIALDEMOKRATIET //
         Kandidat Marcel_Meijer = new Kandidat();
         Marcel_Meijer.setNavn("Marcel Meijer");
-        Marcel_Meijer.setParti(socialdemokratiet);
+        Marcel_Meijer.setParti(Socialdemokratiet);
         kandidatRepository.save(Marcel_Meijer);
 
         Kandidat Michael_Kristensen = new Kandidat();
         Michael_Kristensen.setNavn("Michael Kristensen");
-        Michael_Kristensen.setParti(socialdemokratiet);
+        Michael_Kristensen.setParti(Socialdemokratiet);
         kandidatRepository.save(Michael_Kristensen);
 
         Kandidat Helle_Hansen = new Kandidat();
         Helle_Hansen.setNavn("Helle Hansen");
-        Helle_Hansen.setParti(socialdemokratiet);
+        Helle_Hansen.setParti(Socialdemokratiet);
         kandidatRepository.save(Helle_Hansen);
 
-        Parti Det_Konservative_parti = new Parti();
-        Det_Konservative_parti.setPartiNavn("Det konservative Folkeparti");
-        partiRepository.save(Det_Konservative_parti);
+        // PARTI DET KONSERVATIVE FOLKEPARTI //////
+
+        Parti detKonservativeParti = new Parti();
+        detKonservativeParti.setPartiNavn("Det konservative Folkeparti");
+        detKonservativeParti.setPartiSymbol('C');
+        detKonservativeParti = partiRepository.save(detKonservativeParti);
+
+        // KANDIDATER DET KONSERVATIVE FOLKEPARTI //
 
         Kandidat Per_Urban_Olsen = new Kandidat();
         Per_Urban_Olsen.setNavn("Per Urban Olsen");
-        Per_Urban_Olsen.setParti(Det_Konservative_parti);
+        Per_Urban_Olsen.setParti(detKonservativeParti);
         kandidatRepository.save(Per_Urban_Olsen);
 
         Kandidat Peter_Askjar = new Kandidat();
         Peter_Askjar.setNavn("Peter Askjar");
-        Peter_Askjar.setParti(Det_Konservative_parti);
+        Peter_Askjar.setParti(detKonservativeParti);
         kandidatRepository.save(Peter_Askjar);
 
         Kandidat Martin_Sorensen = new Kandidat();
         Martin_Sorensen.setNavn("Martin Sorensen");
-        Martin_Sorensen.setParti(Det_Konservative_parti);
+        Martin_Sorensen.setParti(detKonservativeParti);
         kandidatRepository.save(Martin_Sorensen);
 
         // PARTI  SF //////
         Parti SF = new Parti();
         SF.setPartiNavn("SF");
         SF.setPartiSymbol('F');
-        partiRepository.save(SF);
+        SF = partiRepository.save(SF);
 
         // KANDIDATER SF  //
         Kandidat Ulla_Holm = new Kandidat();

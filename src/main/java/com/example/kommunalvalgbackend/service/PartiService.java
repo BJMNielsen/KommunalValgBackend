@@ -1,4 +1,4 @@
-package com.example.kommunalvalg.service;
+package com.example.kommunalvalgbackend.service;
 
 import org.springframework.stereotype.Service;
 

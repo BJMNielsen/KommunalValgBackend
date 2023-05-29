@@ -1,4 +1,4 @@
-package com.example.kommunalvalg.model;
+package com.example.kommunalvalgbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -21,6 +21,7 @@ public class Parti {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(unique = true, nullable = false)
     private String partiNavn;
 
     private char partiSymbol;

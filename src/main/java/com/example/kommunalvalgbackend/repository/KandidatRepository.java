@@ -1,6 +1,7 @@
-package com.example.kommunalvalg.repository;
+package com.example.kommunalvalgbackend.repository;
 
-import com.example.kommunalvalg.model.Kandidat;
+
+import com.example.kommunalvalgbackend.model.Kandidat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

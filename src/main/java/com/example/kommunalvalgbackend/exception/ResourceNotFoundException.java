@@ -1,4 +1,4 @@
-package com.example.kommunalvalg.exception;
+package com.example.kommunalvalgbackend.exception;
 
 import java.io.Serial;
 
