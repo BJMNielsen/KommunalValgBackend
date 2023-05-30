@@ -16,23 +16,33 @@ public class KandidatController {
     KandidatService kandidatService;
 
     @GetMapping("/kandidater")
-    public List<Kandidat> getAllKandidater(){
+    public List<Kandidat> getAllKandidater() {
         return kandidatService.getAllKandidater();
     }
 
     @GetMapping("/kandidat/{id}")
-    public Kandidat getKandidat(@PathVariable int id){
+    public Kandidat getKandidat(@PathVariable int id) {
         return kandidatService.getKandidatById(id);
     }
 
+    @GetMapping("/kandidater/{partiNavn}")
+    public List<Kandidat> getAllKandidaterByPartiNavn(@PathVariable String partiNavn) {
+        return kandidatService.getAllKandidaterByParti(partiNavn);
+    }
+
     @PostMapping("/kandidat")
-    public ResponseEntity<Kandidat> addKandidat(@RequestBody Kandidat kandidat){
+    public ResponseEntity<Kandidat> addKandidat(@RequestBody Kandidat kandidat) {
         return kandidatService.addKandidat(kandidat);
     }
 
     @PutMapping("/kandidat")
-    public ResponseEntity<Kandidat> updateKandidat(@RequestBody Kandidat kandidat){
+    public ResponseEntity<Kandidat> updateKandidat(@RequestBody Kandidat kandidat) {
         return kandidatService.updateKandidat(kandidat);
+    }
+
+    @DeleteMapping("/kandidat/{id}")
+    public ResponseEntity<Kandidat> deleteKandidat(@PathVariable int id) {
+        return kandidatService.deleteKandidat(id);
     }
 
 }

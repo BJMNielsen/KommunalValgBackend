@@ -17,6 +17,11 @@ import java.util.List;
 @Entity
 public class Parti {
 
+    public Parti(int id, String partiNavn, char partiSymbol){
+        this.id = id;
+        this.partiNavn = partiNavn;
+        this.partiSymbol = partiSymbol;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
