@@ -46,6 +46,11 @@ public class KandidatService {
             throw new ResourceNotFoundException("Kandidat with id: " + kandidat.getId() + " does not have a Parti, and therefore could not be created.");
         }
 
+        boolean partyDoesNotExist = !kandidatRepository.existsPartiByName(kandidat.getParti().getPartiNavn());
+        if (partyDoesNotExist) {
+            throw new ResourceNotFoundException("Kandidat with id: " + kandidat.getId() + " has a Party with the name: " + kandidat.getParti().getPartiNavn() + " and there is no Party in the database with that name");
+        }
+
         // Hvis den IKKE allerede eksistere, så må vi adde den.
         Kandidat newKandidat = kandidatRepository.save(kandidat);
         return new ResponseEntity<>(newKandidat, HttpStatus.OK);

@@ -5,6 +5,7 @@ import com.example.kommunalvalgbackend.service.PartiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,5 +21,10 @@ public class PartiController {
     @GetMapping("/partier")
     public List<Parti> getAllPartier(){
         return partiService.getAllPartier();
+    }
+
+    @GetMapping("/parti/name/{partiNavn}")
+    public Parti getPartiByName(@PathVariable String partiNavn) {
+        return partiService.getPartyByName(partiNavn);
     }
 }
