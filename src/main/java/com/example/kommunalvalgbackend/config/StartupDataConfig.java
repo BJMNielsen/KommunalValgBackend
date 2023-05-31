@@ -102,6 +102,22 @@ public class StartupDataConfig implements ApplicationRunner {
         Anne_Olsen.setNavn("Anne_olsen");
         Anne_Olsen.setParti(SF);
         kandidatRepository.save(Anne_Olsen);
+
+        // BLANDEDE KANDIDATER TIL SORTERING ///
+        Kandidat larsLarsen = new Kandidat();
+        larsLarsen.setNavn("Lars Larsen");
+        larsLarsen.setParti(Socialdemokratiet);
+        kandidatRepository.save(larsLarsen);
+
+        Kandidat mortenDiggeldauer = new Kandidat();
+        mortenDiggeldauer.setNavn("Morten Diggeldauer");
+        mortenDiggeldauer.setParti(SF);
+        kandidatRepository.save(mortenDiggeldauer);
+
+        Kandidat piaK = new Kandidat();
+        piaK.setNavn("Pia Kjærsgaard");
+        piaK.setParti(detKonservativeParti);
+        kandidatRepository.save(piaK);
     }
 }
 
